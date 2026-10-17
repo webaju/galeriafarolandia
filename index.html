@@ -589,8 +589,30 @@
             .navbar ul li a { padding: 12px 14px; font-size: 0.9rem; }
         }
 
+        /* AJUSTES ESPECÍFICOS PARA CELULAR */
         @media (max-width: 600px) {
-            .hero { height: 80vh; padding-top: 60px; }
+            .hero { 
+                height: 90vh; /* Diminui a altura para não esconder o menu */
+                padding-top: 40px; 
+                /* Ajusta a foto para focar na fachada no celular */
+                background-position: center 20%;
+            }
+            .hero h1 {
+                font-size: 2.2rem; /* Título menor */
+                margin-top: 10px;
+            }
+            .hero p {
+                font-size: 1rem; /* Texto menor */
+                padding: 0 10px;
+                margin-bottom: 20px;
+            }
+            .hero .btn-hero {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            .hero .scroll-down {
+                bottom: 15px; /* Sobe a setinha para não sumir */
+            }
             section { padding: 50px 15px; }
         }
     </style>
@@ -600,7 +622,7 @@
     <!-- ===== HERO ===== -->
     <header class="hero" id="inicio">
         <h1>Galeria Farolândia</h1>
-        <p>Salas comerciais prontas para o seu negócio. Localização privilegiada em Aracaju, infraestrutura completa e condições especiais de aluguel.</p>
+        <p>Salas comerciais prontas para o seu negócio. Localização privilegiada em Aracaju, infraestrutura completa e condições especiais.</p>
         <a href="#salas" class="btn-hero">Ver Salas Disponíveis</a>
         <a href="#salas" class="scroll-down" aria-label="Rolar para baixo">↓</a>
     </header>
@@ -796,7 +818,6 @@
                 id: 'estetica',
                 nome: 'Estética e Beleza',
                 descricao: 'Salões de beleza, clínicas de estética, barbearias e cuidados pessoais.',
-                /* FOTO ATUALIZADA PARA COLORIDA */
                 foto: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=80&fm=jpg',
                 empresas: [
                     {
