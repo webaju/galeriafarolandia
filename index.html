@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria Farolândia - Salas para Alugar</title>
+    <style>
+        /* ===== RESET E ESTILOS GERAIS ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            scroll-behavior: smooth;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            
+            /* Fundo com a foto logoceu.jpg (Céu azul) */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.1) 100%),
+                        url('logoceu.jpg') center center/cover no-repeat;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 80px 20px 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 15px;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            max-width: 700px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            margin-bottom: 30px;
+            color: #f8f9fa;
+        }
+
+        .hero .btn-hero {
+            display: inline-block;
+            background: #e67e22;
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 15px rgba(230,126,34,0.6);
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
+        .hero .btn-hero:hover { background: #cf6d17; transform: translateY(-3px); }
+
+        /* A setinha para baixo */
+        .hero .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            color: #fff;
+            text-decoration: none;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        @keyframes bounce {
+            0%,20%,50%,80%,100% { transform: translateY(0); }
+            40% { transform: translateY(-12px); }
+            60% { transform: translateY(-6px); }
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: #2c3e50;
+            z-index: 500;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .navbar ul li a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .navbar ul li a:hover { background: #e67e22; }
+
+        /* ===== SEÇÕES GENÉRICAS ===== */
+        section { padding: 70px 20px; }
+
+        .secao-titulo {
+            font-size: 2rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .secao-titulo::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #e67e22;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .secao-subtitulo {
+            text-align: center;
+            color: #777;
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== SOBRE ===== */
+        .sobre { max-width: 1100px; margin: 0 auto; }
+
+        .sobre > p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .info-card:hover { transform: translateY(-5px); }
+        .info-card .icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .info-card h3 { font-size: 1.2rem; color: #2c3e50; margin-bottom: 8px; }
+        .info-card p { font-size: 0.95rem; color: #777; margin: 0; }
+
+        /* ===== CATEGORIAS ===== */
+        .categorias { background: #fff; }
+
+        .categorias-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .categoria-card {
+            background: #f8f9fa;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .categoria-card .categoria-foto {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .categoria-card .categoria-conteudo { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; }
+        .categoria-card h3 { font-size: 1.35rem; color: #2c3e50; margin-bottom: 8px; }
+        .categoria-card .categoria-desc { font-size: 0.95rem; color: #666; margin-bottom: 18px; flex-grow: 1; }
+
+        .categoria-card .btn-categoria {
+            display: block;
+            text-align: center;
+            background: #e67e22;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .categoria-card .btn-categoria:hover { background: #cf6d17; }
+
+        /* Modal de empresas da categoria */
+        .modal-empresas .empresa-card {
+            display: flex;
+            gap: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .modal-empresas .empresa-card img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .modal-empresas .empresa-card h4 { color: #2c3e50; margin-bottom: 4px; font-size: 1.1rem; }
+        .modal-empresas .empresa-card p { font-size: 0.9rem; color: #666; margin: 2px 0; }
+        .modal-empresas .empresa-card .empresa-tel { color: #e67e22; font-weight: 600; }
+
+        /* ===== SALAS ===== */
+        .salas { background: #eef1f5; }
+
+        .filtros {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .filtros .filtro-grupo {
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+        }
+
+        .filtros label {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .filtros select, .filtros input {
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: #fff;
+            outline: none;
+        }
+
+        .filtros select:focus, .filtros input:focus { border-color: #e67e22; }
+
+        .btn-limpar {
+            align-self: flex-end;
+            background: #95a5a6;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-limpar:hover { background: #7f8c8d; }
+
+        .contador-resultados {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .grid-salas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sala-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sala-card:hover { transform: translateY(-8px); box-shadow: 0 12px 35px rgba(0,0,0,0.18); }
+
+        .sala-card .foto-sala {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background-color: #ccc;
+        }
+
+        .sala-card .conteudo { padding: 22px; display: flex; flex-direction: column; flex-grow: 1; }
+        .sala-card .conteudo h3 { font-size: 1.35rem; color: #2c3e50; margin-bottom: 5px; }
+
+        .sala-card .tamanho {
+            display: inline-block;
+            background: #e67e22;
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+
+        .sala-card .valor { font-size: 1.6rem; font-weight: 700; color: #e67e22; margin-bottom: 12px; }
+        .sala-card .valor small { font-size: 0.85rem; color: #888; font-weight: 400; }
+        .sala-card .incluso { list-style: none; margin-bottom: 18px; flex-grow: 1; }
+        .sala-card .incluso li { font-size: 0.95rem; color: #555; padding: 4px 0 4px 24px; position: relative; }
+
+        .sala-card .incluso li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: 700;
+        }
+
+        .sala-card .btn-alugar {
+            display: block;
+            text-align: center;
+            background: #2c3e50;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .sala-card .btn-alugar:hover { background: #1a252f; }
+
+        .sem-resultados {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 1.1rem;
+        }
+
+        /* ===== CONTATO ===== */
+        .contato { background: #fff; max-width: 1100px; margin: 0 auto; }
+
+        .contato-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .form-contato {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-contato .campo { display: flex; flex-direction: column; }
+        .form-contato label { font-size: 0.9rem; color: #555; margin-bottom: 5px; font-weight: 600; }
+
+        .form-contato input, .form-contato textarea, .form-contato select {
+            padding: 12px 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .form-contato input:focus, .form-contato textarea:focus, .form-contato select:focus {
+            border-color: #e67e22;
+        }
+
+        .form-contato textarea { resize: vertical; min-height: 100px; }
+
+        .form-contato .btn-enviar {
+            background: #e67e22;
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-contato .btn-enviar:hover { background: #cf6d17; }
+
+        .contato-info h3 { color: #2c3e50; margin-bottom: 15px; font-size: 1.3rem; }
+        .contato-info p { color: #555; margin-bottom: 10px; font-size: 1rem; }
+        .contato-info .info-item { display: flex; gap: 10px; margin-bottom: 15px; align-items: flex-start; }
+        .contato-info .info-item .icon { font-size: 1.3rem; }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-whatsapp:hover { background: #1da851; }
+
+        /* ===== MAPA ===== */
+        .mapa { background: #eef1f5; }
+
+        .mapa-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .mapa-wrapper iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            display: block;
+        }
+
+        /* ===== MODAIS ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.ativo { display: flex; }
+
+        .modal {
+            background: #fff;
+            border-radius: 14px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal .fechar {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal img.modal-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 14px 14px 0 0;
+        }
+
+        .modal .modal-conteudo { padding: 25px; }
+        .modal .modal-conteudo h3 { font-size: 1.5rem; color: #2c3e50; margin-bottom: 10px; }
+        .modal .modal-conteudo .valor { font-size: 1.6rem; color: #e67e22; font-weight: 700; margin: 10px 0; }
+        .modal .modal-conteudo ul { list-style: none; margin: 15px 0; }
+        .modal .modal-conteudo ul li { padding: 5px 0 5px 24px; position: relative; color: #555; }
+
+        .modal .modal-conteudo ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: 700;
+        }
+
+        .modal .btn-contato {
+            display: block;
+            width: 100%;
+            background: #e67e22;
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .modal .btn-contato:hover { background: #cf6d17; }
+
+        .modal-empresas .modal-conteudo h3 { margin-bottom: 15px; }
+        .modal-empresas .modal-conteudo > p { color: #666; margin-bottom: 20px; }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background: #2c3e50;
+            color: #ccc;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.95rem;
+        }
+
+        footer strong { color: #fff; }
+        footer a { color: #e67e22; text-decoration: none; }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .contato-wrapper { grid-template-columns: 1fr; }
+            .navbar ul li a { padding: 12px 14px; font-size: 0.9rem; }
+        }
+
+        @media (max-width: 600px) {
+            .hero { height: 80vh; padding-top: 60px; }
+            section { padding: 50px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero" id="inicio">
+        <h1>Galeria Farolândia</h1>
+        <p>Salas comerciais prontas para o seu negócio. Localização privilegiada em Aracaju, infraestrutura completa e condições especiais de aluguel.</p>
+        <a href="#salas" class="btn-hero">Ver Salas Disponíveis</a>
+        <a href="#salas" class="scroll-down" aria-label="Rolar para baixo">↓</a>
+    </header>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#categorias">Categorias</a></li>
+            <li><a href="#salas">Salas</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li><a href="#localizacao">Localização</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== SOBRE ===== -->
+    <section class="sobre" id="sobre">
+        <h2 class="secao-titulo">Sobre a Galeria</h2>
+        <p style="margin-top:25px;">Um espaço comercial pensado para impulsionar o seu negócio. Aqui você encontra salas de diferentes tamanhos, com infraestrutura moderna e localização estratégica em Farolândia, Aracaju.</p>
+
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="icon">📍</div>
+                <h3>Localização</h3>
+                <p>No coração de Farolândia, com fácil acesso e grande fluxo de pessoas.</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">🔒</div>
+                <h3>Segurança</h3>
+                <p>Monitoramento 24h e portaria controlada para sua tranquilidade.</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">🛗</div>
+                <h3>Estrutura</h3>
+                <p>Elevadores, estacionamento e áreas comuns bem cuidadas.</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">💡</div>
+                <h3>Energia Inclusa</h3>
+                <p>Conta de energia já embutida no valor do aluguel, sem surpresas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORIAS ===== -->
+    <section class="categorias" id="categorias">
+        <h2 class="secao-titulo">Categorias de Negócios</h2>
+        <p class="secao-subtitulo">Conheça as empresas que já fazem parte da nossa galeria. Clique em uma categoria para ver as empresas instaladas.</p>
+
+        <div class="categorias-wrapper" id="categoriasWrapper"></div>
+    </section>
+
+    <!-- ===== SALAS ===== -->
+    <section class="salas" id="salas">
+        <h2 class="secao-titulo">Salas Disponíveis</h2>
+        <p class="secao-subtitulo">Use os filtros abaixo para encontrar a sala ideal. Clique em uma sala para ver os detalhes e o que está incluso no aluguel.</p>
+
+        <div class="filtros">
+            <div class="filtro-grupo">
+                <label for="filtroTamanho">Tamanho mínimo</label>
+                <select id="filtroTamanho">
+                    <option value="0">Todos os tamanhos</option>
+                    <option value="20">a partir de 20 m²</option>
+                    <option value="30">a partir de 30 m²</option>
+                    <option value="40">a partir de 40 m²</option>
+                    <option value="50">a partir de 50 m²</option>
+                </select>
+            </div>
+            <div class="filtro-grupo">
+                <label for="filtroValor">Valor máximo</label>
+                <select id="filtroValor">
+                    <option value="999999">Qualquer valor</option>
+                    <option value="1500">até R$ 1.500</option>
+                    <option value="2000">até R$ 2.000</option>
+                    <option value="3000">até R$ 3.000</option>
+                    <option value="5000">até R$ 5.000</option>
+                </select>
+            </div>
+            <button class="btn-limpar" onclick="limparFiltros()">Limpar filtros</button>
+        </div>
+
+        <p class="contador-resultados" id="contadorResultados"></p>
+
+        <div class="grid-salas" id="gridSalas"></div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section class="contato" id="contato">
+        <h2 class="secao-titulo">Fale Conosco</h2>
+        <p class="secao-subtitulo">Preencha o formulário ou entre em contato pelo WhatsApp. Responderemos o mais breve possível.</p>
+
+        <div class="contato-wrapper">
+            <form class="form-contato" id="formContato" onsubmit="enviarFormulario(event)">
+                <div class="campo">
+                    <label for="nome">Nome completo *</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                </div>
+                <div class="campo">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                </div>
+                <div class="campo">
+                    <label for="telefone">Telefone / WhatsApp *</label>
+                    <input type="tel" id="telefone" name="telefone" required placeholder="(79) 99999-9999">
+                </div>
+                <div class="campo">
+                    <label for="interesse">Sala de interesse</label>
+                    <select id="interesse" name="interesse">
+                        <option value="">Selecione uma opção</option>
+                        <option value="Sala Comercial 101">Sala Comercial 101 (25 m²)</option>
+                        <option value="Sala Comercial 202">Sala Comercial 202 (40 m²)</option>
+                        <option value="Loja Térrea 05">Loja Térrea 05 (60 m²)</option>
+                        <option value="Sala Comercial 305">Sala Comercial 305 (18 m²)</option>
+                        <option value="Sala Comercial 410">Sala Comercial 410 (32 m²)</option>
+                        <option value="Espaço Gourmet 02">Espaço Gourmet 02 (50 m²)</option>
+                        <option value="Outro">Outro / Não sei ainda</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" placeholder="Conte-nos sobre o seu negócio..."></textarea>
+                </div>
+                <button type="submit" class="btn-enviar">Enviar mensagem</button>
+            </form>
+
+            <div class="contato-info">
+                <h3>Informações de Contato</h3>
+                <div class="info-item">
+                    <span class="icon">📞</span>
+                    <div><strong>Telefone</strong><br>(79) 3234-5678</div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📧</span>
+                    <div><strong>E-mail</strong><br>contato@galeriafarolandia.com.br</div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">🕐</span>
+                    <div><strong>Horário de atendimento</strong><br>Segunda a sexta, das 9h às 18h</div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📍</span>
+                    <div><strong>Endereço</strong><br>Rua José Francisco Prejuízo, 284<br>Farolândia, Aracaju - SE, 49030-513</div>
+                </div>
+
+                <a href="https://wa.me/5579999999999?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20alugar%20uma%20sala%20na%20Galeria%20Farol%C3%A2ndia."
+                   target="_blank" rel="noopener" class="btn-whatsapp">
+                    <span>💬</span> Falar pelo WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAPA ===== -->
+    <section class="mapa" id="localizacao">
+        <h2 class="secao-titulo">Nossa Localização</h2>
+        <p class="secao-subtitulo">Estamos em Farolândia, Aracaju, com fácil acesso por transporte público e estacionamento nas proximidades.</p>
+
+        <div class="mapa-wrapper">
+            <iframe
+                src="https://maps.google.com/maps?q=Rua%20Jos%C3%A9%20Francisco%20Preju%C3%ADzo%2C%20284%20-%20Farol%C3%A2ndia%2C%20Aracaju%20-%20SE%2C%2049030-513&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Localização da Galeria Farolândia">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- ===== MODAL DE DETALHES DA SALA ===== -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalConteudo"></div>
+    </div>
+
+    <!-- ===== MODAL DE EMPRESAS DA CATEGORIA ===== -->
+    <div class="modal-overlay" id="modalCategoriaOverlay">
+        <div class="modal modal-empresas" id="modalCategoriaConteudo"></div>
+    </div>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer>
+        <p><strong>Galeria Farolândia</strong></p>
+        <p>Rua José Francisco Prejuízo, 284 - Farolândia, Aracaju - SE, 49030-513</p>
+        <p>Telefone: (79) 3234-5678 | E-mail: contato@galeriafarolandia.com.br</p>
+        <p>&copy; 2026 Galeria Farolândia. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // =========================================================
+        // ===== DADOS DAS CATEGORIAS E EMPRESAS =====
+        // =========================================================
+        const categorias = [
+            {
+                id: 'estetica',
+                nome: 'Estética e Beleza',
+                descricao: 'Salões de beleza, clínicas de estética, barbearias e cuidados pessoais.',
+                foto: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
+                empresas: [
+                    {
+                        nome: 'Studio Bella Pele',
+                        descricao: 'Clínica de estética facial e corporal, com tratamentos personalizados.',
+                        telefone: '(79) 98765-4321',
+                        foto: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=300&q=80'
+                    },
+                    {
+                        nome: 'Barbearia Dom Corte',
+                        descricao: 'Barbearia masculina com cortes clássicos, barba e cuidados premium.',
+                        telefone: '(79) 97654-3210',
+                        foto: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=300&q=80'
+                    }
+                ]
+            },
+            {
+                id: 'servicos',
+                nome: 'Serviços',
+                descricao: 'Assistência técnica, chaveiro, gráfica, contabilidade e serviços gerais.',
+                foto: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+                empresas: [
+                    {
+                        nome: 'TechFix Assistência',
+                        descricao: 'Conserto de celulares, computadores e eletrônicos em geral.',
+                        telefone: '(79) 96543
