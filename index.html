@@ -22,7 +22,7 @@
             height: 100vh;
             min-height: 600px;
             
-            /* Fundo com a foto logoceu.jpg (Céu azul) */
+            /* Fundo com a foto logoceu.jpg */
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.1) 100%),
                         url('logoceu.jpg') center center/cover no-repeat;
             
@@ -796,19 +796,20 @@
                 id: 'estetica',
                 nome: 'Estética e Beleza',
                 descricao: 'Salões de beleza, clínicas de estética, barbearias e cuidados pessoais.',
-                foto: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
+                /* FOTO ATUALIZADA PARA COLORIDA */
+                foto: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=80&fm=jpg',
                 empresas: [
                     {
                         nome: 'Studio Bella Pele',
                         descricao: 'Clínica de estética facial e corporal, com tratamentos personalizados.',
                         telefone: '(79) 98765-4321',
-                        foto: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=300&q=80'
+                        foto: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=300&q=80&fm=jpg'
                     },
                     {
                         nome: 'Barbearia Dom Corte',
                         descricao: 'Barbearia masculina com cortes clássicos, barba e cuidados premium.',
                         telefone: '(79) 97654-3210',
-                        foto: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=300&q=80'
+                        foto: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=300&q=80&fm=jpg'
                     }
                 ]
             },
@@ -816,9 +817,347 @@
                 id: 'servicos',
                 nome: 'Serviços',
                 descricao: 'Assistência técnica, chaveiro, gráfica, contabilidade e serviços gerais.',
-                foto: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+                foto: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80&fm=jpg',
                 empresas: [
                     {
                         nome: 'TechFix Assistência',
                         descricao: 'Conserto de celulares, computadores e eletrônicos em geral.',
-                        telefone: '(79) 96543
+                        telefone: '(79) 96543-2109',
+                        foto: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=300&q=80&fm=jpg'
+                    },
+                    {
+                        nome: 'Conta Fácil Contabilidade',
+                        descricao: 'Assessoria contábil e fiscal para pequenas e médias empresas.',
+                        telefone: '(79) 95432-1098',
+                        foto: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=300&q=80&fm=jpg'
+                    }
+                ]
+            },
+            {
+                id: 'alimentacao',
+                nome: 'Alimentação',
+                descricao: 'Cafeterias, lanchonetes, restaurantes, docerias e food service.',
+                foto: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80&fm=jpg',
+                empresas: [
+                    {
+                        nome: 'Café Aroma',
+                        descricao: 'Cafeteria artesanal com grãos selecionados e doces caseiros.',
+                        telefone: '(79) 94321-0987',
+                        foto: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=300&q=80&fm=jpg'
+                    },
+                    {
+                        nome: 'Sabor & Cia Lanches',
+                        descricao: 'Lanchonete com hambúrgueres artesanais, salgados e bebidas.',
+                        telefone: '(79) 93210-9876',
+                        foto: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300&q=80&fm=jpg'
+                    }
+                ]
+            },
+            {
+                id: 'moda',
+                nome: 'Moda e Vestuário',
+                descricao: 'Lojas de roupas, calçados, acessórios e artigos de moda.',
+                foto: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80&fm=jpg',
+                empresas: [
+                    {
+                        nome: 'Boutique Elegance',
+                        descricao: 'Moda feminina com peças exclusivas e atendimento personalizado.',
+                        telefone: '(79) 92109-8765',
+                        foto: 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=300&q=80&fm=jpg'
+                    },
+                    {
+                        nome: 'Estilo Urbano',
+                        descricao: 'Roupas masculinas e streetwear para o dia a dia.',
+                        telefone: '(79) 91098-7654',
+                        foto: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=300&q=80&fm=jpg'
+                    }
+                ]
+            },
+            {
+                id: 'saude',
+                nome: 'Saúde e Bem-estar',
+                descricao: 'Consultórios, farmácias, academias, fisioterapia e terapias.',
+                foto: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80&fm=jpg',
+                empresas: [
+                    {
+                        nome: 'Espaço Acolher Psicologia',
+                        descricao: 'Consultório de psicologia com atendimento individual, casais e terapia online.',
+                        telefone: '(79) 90987-6543',
+                        foto: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=300&q=80&fm=jpg'
+                    },
+                    {
+                        nome: 'Fisio Movimento',
+                        descricao: 'Fisioterapia, pilates e reabilitação com profissionais especializados.',
+                        telefone: '(79) 99876-5432',
+                        foto: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=300&q=80&fm=jpg'
+                    }
+                ]
+            }
+        ];
+
+        // =========================================================
+        // ===== DADOS DAS SALAS =====
+        // =========================================================
+        const salas = [
+            {
+                id: 1,
+                titulo: "Sala Comercial 101",
+                tamanho: "25 m²",
+                tamanhoNum: 25,
+                valor: "R$ 1.800",
+                valorNum: 1800,
+                foto: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80&fm=jpg",
+                inclusos: ["Energia elétrica inclusa","Água inclusa","Internet fibra óptica","Banheiro privativo","Ar-condicionado","1 vaga de estacionamento"]
+            },
+            {
+                id: 2,
+                titulo: "Sala Comercial 202",
+                tamanho: "40 m²",
+                tamanhoNum: 40,
+                valor: "R$ 2.900",
+                valorNum: 2900,
+                foto: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80&fm=jpg",
+                inclusos: ["Energia elétrica inclusa","Água inclusa","Internet fibra óptica","2 banheiros","Ar-condicionado central","2 vagas de estacionamento","Copa equipada"]
+            },
+            {
+                id: 3,
+                titulo: "Loja Térrea 05",
+                tamanho: "60 m²",
+                tamanhoNum: 60,
+                valor: "R$ 4.500",
+                valorNum: 4500,
+                foto: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80&fm=jpg",
+                inclusos: ["Energia elétrica inclusa","Água inclusa","Vitrine para rua","Banheiro privativo","Ar-condicionado","3 vagas de estacionamento","Depósito nos fundos"]
+            },
+            {
+                id: 4,
+                titulo: "Sala Comercial 305",
+                tamanho: "18 m²",
+                tamanhoNum: 18,
+                valor: "R$ 1.300",
+                valorNum: 1300,
+                foto: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80&fm=jpg",
+                inclusos: ["Energia elétrica inclusa","Água inclusa","Internet fibra óptica","Banheiro compartilhado","Ponto de ar-condicionado"]
+            },
+            {
+                id: 5,
+                titulo: "Sala Comercial 410",
+                tamanho: "32 m²",
+                tamanhoNum: 32,
+                valor: "R$ 2.200",
+                valorNum: 2200,
+                foto: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80&fm=jpg",
+                inclusos: ["Energia elétrica inclusa","Água inclusa","Internet fibra óptica","Banheiro privativo","Ar-condicionado","1 vaga de estacionamento","Recepção compartilhada"]
+            },
+            {
+                id: 6,
+                titulo: "Espaço Gourmet 02",
+                tamanho: "50 m²",
+                tamanhoNum: 50,
+                valor: "R$ 3.800",
+                valorNum: 3800,
+                foto: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80&fm=jpg",
+                inclusos: ["Energia elétrica inclusa","Água inclusa","Ponto de gás","Exaustão instalada","Banheiro privativo","2 vagas de estacionamento"]
+            }
+        ];
+
+        // =========================================================
+        // ===== RENDERIZAR CATEGORIAS =====
+        // =========================================================
+        const categoriasWrapper = document.getElementById('categoriasWrapper');
+
+        function renderizarCategorias() {
+            categoriasWrapper.innerHTML = categorias.map(cat => `
+                <div class="categoria-card">
+                    <img class="categoria-foto" src="${cat.foto}" alt="Categoria ${cat.nome}">
+                    <div class="categoria-conteudo">
+                        <h3>${cat.nome}</h3>
+                        <p class="categoria-desc">${cat.descricao}</p>
+                        <button class="btn-categoria" onclick="abrirCategoria('${cat.id}')">
+                            Ver empresas (${cat.empresas.length})
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // =========================================================
+        // ===== MODAL DE CATEGORIA (EMPRESAS) =====
+        // =========================================================
+        const modalCategoriaOverlay = document.getElementById('modalCategoriaOverlay');
+        const modalCategoriaConteudo = document.getElementById('modalCategoriaConteudo');
+
+        function abrirCategoria(id) {
+            const cat = categorias.find(c => c.id === id);
+            if (!cat) return;
+
+            modalCategoriaConteudo.innerHTML = `
+                <button class="fechar" onclick="fecharCategoria()" aria-label="Fechar">&times;</button>
+                <div class="modal-conteudo">
+                    <h3>${cat.nome}</h3>
+                    <p>${cat.descricao}</p>
+                    ${cat.empresas.map(emp => `
+                        <div class="empresa-card">
+                            <img src="${emp.foto}" alt="${emp.nome}">
+                            <div>
+                                <h4>${emp.nome}</h4>
+                                <p>${emp.descricao}</p>
+                                <p class="empresa-tel">📞 ${emp.telefone}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            modalCategoriaOverlay.classList.add('ativo');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharCategoria() {
+            modalCategoriaOverlay.classList.remove('ativo');
+            document.body.style.overflow = '';
+        }
+
+        modalCategoriaOverlay.addEventListener('click', (e) => {
+            if (e.target === modalCategoriaOverlay) fecharCategoria();
+        });
+
+        // =========================================================
+        // ===== FILTROS DE SALAS =====
+        // =========================================================
+        const filtroTamanho = document.getElementById('filtroTamanho');
+        const filtroValor = document.getElementById('filtroValor');
+
+        filtroTamanho.addEventListener('change', renderizarSalasFiltradas);
+        filtroValor.addEventListener('change', renderizarSalasFiltradas);
+
+        function limparFiltros() {
+            filtroTamanho.value = '0';
+            filtroValor.value = '999999';
+            renderizarSalasFiltradas();
+        }
+
+        const gridSalas = document.getElementById('gridSalas');
+        const contadorResultados = document.getElementById('contadorResultados');
+
+        function renderizarSalasFiltradas() {
+            const minTam = parseFloat(filtroTamanho.value);
+            const maxValor = parseFloat(filtroValor.value);
+
+            const filtradas = salas.filter(s =>
+                s.tamanhoNum >= minTam && s.valorNum <= maxValor
+            );
+
+            contadorResultados.textContent = `${filtradas.length} sala(s) encontrada(s)`;
+
+            if (filtradas.length === 0) {
+                gridSalas.innerHTML = `<div class="sem-resultados">😕 Nenhuma sala encontrada com esses filtros. Tente ajustar os critérios.</div>`;
+                return;
+            }
+
+            gridSalas.innerHTML = filtradas.map(sala => `
+                <div class="sala-card">
+                    <img class="foto-sala" src="${sala.foto}" alt="Foto da ${sala.titulo} (sala vazia)">
+                    <div class="conteudo">
+                        <h3>${sala.titulo}</h3>
+                        <span class="tamanho">${sala.tamanho}</span>
+                        <div class="valor">${sala.valor}<small>/mês</small></div>
+                        <ul class="incluso">
+                            ${sala.inclusos.slice(0, 3).map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                        <button class="btn-alugar" onclick="abrirModal(${sala.id})">Ver detalhes e alugar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // =========================================================
+        // ===== MODAL DE DETALHES DA SALA =====
+        // =========================================================
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalConteudo = document.getElementById('modalConteudo');
+
+        function abrirModal(id) {
+            const sala = salas.find(s => s.id === id);
+            if (!sala) return;
+
+            modalConteudo.innerHTML = `
+                <button class="fechar" onclick="fecharModal()" aria-label="Fechar">&times;</button>
+                <img class="modal-img" src="${sala.foto}" alt="Foto da ${sala.titulo} (sala vazia)">
+                <div class="modal-conteudo">
+                    <h3>${sala.titulo}</h3>
+                    <span class="tamanho">${sala.tamanho}</span>
+                    <div class="valor">${sala.valor}<small>/mês</small></div>
+                    <p style="color:#555; margin-top:10px;"><strong>O que está incluso no aluguel:</strong></p>
+                    <ul>
+                        ${sala.inclusos.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                    <button class="btn-contato" onclick="contatarWhatsApp('${sala.titulo}', ${sala.valorNum})">
+                        💬 Tenho interesse — falar no WhatsApp
+                    </button>
+                </div>
+            `;
+
+            modalOverlay.classList.add('ativo');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharModal() {
+            modalOverlay.classList.remove('ativo');
+            document.body.style.overflow = '';
+        }
+
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) fecharModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') { fecharModal(); fecharCategoria(); }
+        });
+
+        // =========================================================
+        // ===== WHATSAPP =====
+        // =========================================================
+        // Troque pelo número real da galeria (formato: 55 + DDD + número)
+        const NUMERO_WHATSAPP = '5579999999999';
+
+        function contatarWhatsApp(tituloSala, valor) {
+            const msg = `Olá! Tenho interesse na *${tituloSala}* (${valor.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}/mês). Poderia me dar mais informações?`;
+            const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        }
+
+        // =========================================================
+        // ===== FORMULÁRIO DE CONTATO =====
+        // =========================================================
+        function enviarFormulario(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const interesse = document.getElementById('interesse').value;
+            const mensagem = document.getElementById('mensagem').value;
+
+            const texto = `*Novo contato pelo site*%0A%0A` +
+                `*Nome:* ${nome}%0A` +
+                `*E-mail:* ${email}%0A` +
+                `*Telefone:* ${telefone}%0A` +
+                `*Sala de interesse:* ${interesse || 'Não informado'}%0A` +
+                `*Mensagem:* ${mensagem || '(sem mensagem)'}`;
+
+            const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${texto}`;
+            window.open(url, '_blank');
+
+            alert('Obrigado! Sua mensagem foi preparada. Você será redirecionado para o WhatsApp para enviar.');
+            document.getElementById('formContato').reset();
+        }
+
+        // =========================================================
+        // ===== INICIALIZAÇÃO =====
+        // =========================================================
+        renderizarCategorias();
+        renderizarSalasFiltradas();
+    </script>
+</body>
+</html>
